@@ -2324,11 +2324,21 @@ section#glp1-section .content-side {
     padding: 0.75rem;
   }
 
-  /* Observable iframe - mobile only styling */
-  .piper-guided-graph iframe {
-    width: 100%;
-    height: 600px;
-    border: none;
+  /* Hide Observable iframe on mobile, show helpful message */
+  #global-patterns-section .piper-guided-graph iframe {
+    display: none;
+  }
+
+  #global-patterns-section .piper-guided-graph::after {
+    content: "📊 This interactive visualization works best on desktop. View on a larger screen for the full experience.";
+    display: block;
+    padding: 2rem 1.5rem;
+    background: #f3f4f6;
+    border-radius: 0.75rem;
+    text-align: center;
+    color: #374151;
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
 
   .piper-block iframe {
