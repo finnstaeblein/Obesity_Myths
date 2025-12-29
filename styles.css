@@ -2328,20 +2328,23 @@ section#glp1-section .content-side {
     padding: 0.75rem;
   }
 
-  /* Scale Observable iframe to fit mobile viewport */
+  /* Make Observable iframe fit like D3 map - use viewport width */
   .piper-guided-graph {
     width: 100%;
-    height: 650px;
-    overflow: hidden;
+    height: auto;
+    min-height: 600px;
+    overflow: visible;
     position: relative;
   }
 
   .piper-guided-graph iframe {
-    width: 750px;
-    height: 1200px;
-    transform: scale(0.52);
-    transform-origin: top left;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 1000px !important;
+    margin: 0 !important;
+    padding: 0 !important;
     border: none;
+    transform: none;
   }
 
   .piper-block iframe {
