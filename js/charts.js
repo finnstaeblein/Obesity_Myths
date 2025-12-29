@@ -1663,9 +1663,13 @@ export function createObesityDeclineChart(containerId) {
   const container = d3.select(`#${containerId}`);
   container.selectAll('*').remove();
 
-  const margin = { top: 20, right: 120, bottom: 60, left: 60 };
-  const width = 1000 - margin.left - margin.right;
-  const height = 550 - margin.top - margin.bottom;
+  // Adjust dimensions for mobile
+  const isMobile = window.innerWidth < 768;
+  const margin = isMobile
+    ? { top: 20, right: 80, bottom: 50, left: 50 }
+    : { top: 20, right: 120, bottom: 60, left: 60 };
+  const width = isMobile ? 600 - margin.left - margin.right : 1000 - margin.left - margin.right;
+  const height = isMobile ? 400 - margin.top - margin.bottom : 550 - margin.top - margin.bottom;
 
   const svg = container.append('svg')
     .attr('width', '100%')
