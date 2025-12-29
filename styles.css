@@ -2330,7 +2330,7 @@ section#glp1-section .content-side {
   }
 
   #global-patterns-section .piper-guided-graph::after {
-    content: "📊 This interactive visualization works best on desktop. View on a larger screen for the full experience.";
+    content: "This interactive visualization only works on desktop";
     display: block;
     padding: 2rem 1.5rem;
     background: #f3f4f6;
