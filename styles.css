@@ -2248,10 +2248,6 @@ section#glp1-section .content-side {
     margin-top: 0.5rem;
   }
 
-  /* Make interactive map more touch-friendly */
-  .piper-guided-graph iframe {
-    min-height: 500px;
-  }
 
   /* D3 Interactive Chart specific optimizations */
   #inactivity-chart {
@@ -2328,17 +2324,11 @@ section#glp1-section .content-side {
     padding: 0.75rem;
   }
 
-  /* D3 world map container - works like Data Collection Map */
-  .piper-guided-graph {
+  /* Observable iframe - mobile only styling */
+  .piper-guided-graph iframe {
     width: 100%;
-    min-height: 500px;
-    overflow: visible;
-    position: relative;
-  }
-
-  .piper-guided-graph svg {
-    max-width: 100%;
-    height: auto;
+    height: 600px;
+    border: none;
   }
 
   .piper-block iframe {

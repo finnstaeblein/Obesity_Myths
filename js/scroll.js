@@ -110,8 +110,22 @@ function updateSection(sectionId) {
 function updateChart(sectionKey, step) {
   switch (sectionKey) {
     case 'global-patterns':
-      // Render D3 world map showing obesity prevalence
-      createWorldMap('global-obesity-map', null, 2022);
+      // Show/hide graphs based on current step
+      const globalGraphs = document.querySelectorAll('#global-patterns-section .piper-guided-graph');
+      // Map steps to graph indices: step 0 & 1 show graph 0 (country trends), step 2 shows graph 5 (full explorer)
+      const graphIndexMap = {
+        0: 0,  // Show country trends click to explore (has play button)
+        1: 0,  // Keep showing same graph so users can continue exploring
+        2: 5   // Show full explorer
+      };
+      const targetGraphIndex = graphIndexMap[step];
+      globalGraphs.forEach((graph, index) => {
+        if (index === targetGraphIndex) {
+          graph.style.display = 'block';
+        } else {
+          graph.style.display = 'none';
+        }
+      });
       break;
     case 'inactivity':
       const chartTitle = document.getElementById('inactivity-chart-title');
