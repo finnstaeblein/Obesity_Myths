@@ -1933,19 +1933,6 @@ section#glp1-section .content-side {
 }
 
 /* ============================================
-   DESKTOP/MOBILE GRAPH SWITCHING
-   ============================================ */
-
-/* Desktop: Show Observable iframe, hide D3 map */
-.desktop-only-iframe {
-  display: block;
-}
-
-.mobile-only-map {
-  display: none;
-}
-
-/* ============================================
    MOBILE-FIRST RESPONSIVE ENHANCEMENTS
    ============================================ */
 
@@ -2337,20 +2324,11 @@ section#glp1-section .content-side {
     padding: 0.75rem;
   }
 
-  /* Hide Observable iframe on mobile, show D3 map instead */
-  .desktop-only-iframe {
-    display: none !important;
-  }
-
-  .mobile-only-map {
-    display: block;
+  /* Observable iframe - mobile only styling */
+  .piper-guided-graph iframe {
     width: 100%;
-    min-height: 500px;
-  }
-
-  .mobile-only-map svg {
-    max-width: 100%;
-    height: auto;
+    height: 600px;
+    border: none;
   }
 
   .piper-block iframe {
