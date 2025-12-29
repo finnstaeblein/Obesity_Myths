@@ -1911,6 +1911,16 @@ section#glp1-section .content-side {
   display: block;
 }
 
+/* Mobile vs Desktop graph display */
+/* Default (desktop): show iframe, hide mobile image */
+.mobile-only-graph {
+  display: none;
+}
+
+.desktop-only-graph {
+  display: block;
+}
+
 /* Mobile adjustments */
 @media (max-width: 800px) {
   .piper-block-inner {
@@ -2324,21 +2334,32 @@ section#glp1-section .content-side {
     padding: 0.75rem;
   }
 
-  /* Hide Observable iframe on mobile, show helpful message */
-  #global-patterns-section .piper-guided-graph iframe {
-    display: none;
+  /* Hide Observable iframe on mobile, show static image with message */
+  .desktop-only-graph {
+    display: none !important;
   }
 
-  #global-patterns-section .piper-guided-graph::after {
-    content: "This interactive visualization only works on desktop";
+  .mobile-only-graph {
     display: block;
-    padding: 2rem 1.5rem;
+  }
+
+  .static-obesity-map {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .mobile-graph-message {
+    display: block;
+    padding: 1rem 1.5rem;
     background: #f3f4f6;
     border-radius: 0.75rem;
     text-align: center;
     color: #374151;
     font-size: 0.95rem;
     line-height: 1.5;
+    margin: 0;
   }
 
   .piper-block iframe {
