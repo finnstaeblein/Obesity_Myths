@@ -2328,17 +2328,22 @@ section#glp1-section .content-side {
     padding: 0.75rem;
   }
 
-  /* Observable iframes - make them scrollable on mobile */
-  .piper-guided-graph {
-    width: 100% !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
+  /* Hide Observable iframes on mobile - they don't render properly */
+  .piper-guided-graph iframe {
+    display: none !important;
   }
 
-  .piper-guided-graph iframe {
-    width: 100% !important;
-    min-width: 600px !important;
-    min-height: 800px !important;
+  /* Add a message for mobile users */
+  .piper-guided-graph::after {
+    content: "📱 This interactive visualization is best viewed on desktop. Visit on a larger screen to explore the full interactive map.";
+    display: block;
+    padding: 2rem;
+    background: #f3f4f6;
+    border-radius: 0.5rem;
+    text-align: center;
+    color: #374151;
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 
   .piper-block iframe {
