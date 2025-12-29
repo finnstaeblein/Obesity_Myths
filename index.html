@@ -9,7 +9,7 @@
   <script src="https://d3js.org/d3-geo.v3.min.js"></script>
   <script src="https://d3js.org/topojson.v3.min.js"></script>
   <script src="https://unpkg.com/simple-statistics@7.8.8/dist/simple-statistics.min.js"></script>
-  <link rel="stylesheet" href="./styles.css?v=30">
+  <link rel="stylesheet" href="./styles.css?v=31">
 </head>
 
 <body>
@@ -45,8 +45,11 @@
             <h3 class="card-title">Adult and Child Obesity Prevalence by Country, 1990 to 2022</h3>
             <!-- Graph 0-->
             <div class="piper-guided-graph" data-step="0">
-              <iframe width="100%" height="1077" frameborder="0"
+              <!-- Observable iframe for desktop -->
+              <iframe class="desktop-only-iframe" width="100%" height="1077" frameborder="0"
                 src="https://observablehq.com/embed/1ac5d9bd83d0b509@458?cells=map"></iframe>
+              <!-- D3 map for mobile -->
+              <div id="mobile-world-map" class="mobile-only-map"></div>
             </div>
 
             <!-- Graph 1-->

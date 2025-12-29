@@ -126,6 +126,12 @@ function updateChart(sectionKey, step) {
           graph.style.display = 'none';
         }
       });
+
+      // Render D3 map for mobile
+      const mobileMapContainer = document.getElementById('mobile-world-map');
+      if (mobileMapContainer && window.innerWidth < 768) {
+        createWorldMap('mobile-world-map', null, 2022);
+      }
       break;
     case 'inactivity':
       const chartTitle = document.getElementById('inactivity-chart-title');
