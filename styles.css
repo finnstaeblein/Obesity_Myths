@@ -2235,7 +2235,8 @@ section#glp1-section .content-side {
   /* Ensure chart has sufficient height on mobile */
   #inactivity-chart svg {
     min-height: 400px;
-    min-width: 600px; /* Force minimum width to make chart scrollable */
+    width: 100%;
+    height: auto;
   }
 
   /* Make chart wrapper scrollable */
@@ -2291,15 +2292,30 @@ section#glp1-section .content-side {
     -webkit-overflow-scrolling: touch;
   }
 
-  #data-collection-map svg {
-    min-width: 600px; /* Force minimum width to make map scrollable */
-  }
-
   /* Make all chart containers scrollable horizontally on mobile */
   .chart-wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     padding: 0.75rem;
+  }
+
+  /* Force all SVGs to be scrollable if wider than screen */
+  svg {
+    max-width: none !important;
+  }
+
+  /* Observable iframes - make them properly sized */
+  .piper-guided-graph iframe,
+  .piper-block iframe {
+    width: 100% !important;
+    min-height: 500px !important;
+    max-height: 700px !important;
+  }
+
+  /* Specific fix for GLP-1 chart container */
+  #glp1-section > .conclusion-content > div {
+    padding: 0 0.5rem !important;
+    margin-bottom: 1rem !important;
   }
 
   .toggle-label {
