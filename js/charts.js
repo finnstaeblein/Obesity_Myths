@@ -282,15 +282,13 @@ export function createDataCollectionMap(containerId) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
 
-  const containerWidth = container.clientWidth || 800;
-  const isMobile = containerWidth < 768;
+  const width = container.clientWidth || 800;
+  const isMobile = width < 768;
 
-  // On mobile: use fixed dimensions for consistent rendering
-  // On desktop: dynamic based on container
-  const width = isMobile ? 400 : containerWidth;
+  // On mobile: stack legend below map, on desktop: legend on right
   const legendWidth = isMobile ? 0 : 230;
-  const mapWidth = isMobile ? 400 : containerWidth - legendWidth - 40;
-  const mapHeight = isMobile ? 350 : 500;
+  const mapWidth = isMobile ? width : width - legendWidth - 40;
+  const mapHeight = isMobile ? 400 : 500;
   const legendYOffset = isMobile ? mapHeight + 30 : 20;
   const totalHeight = isMobile ? mapHeight + 320 : 500;
 
@@ -301,10 +299,8 @@ export function createDataCollectionMap(containerId) {
     .attr('viewBox', `0 0 ${width} ${totalHeight}`)
     .attr('preserveAspectRatio', 'xMidYMid meet');
 
-  // Scale the map appropriately
-  const scaleDivisor = isMobile ? 2.5 : 5.5;
   const projection = d3.geoNaturalEarth1()
-    .scale(mapWidth / scaleDivisor)
+    .scale(mapWidth / 5.5)
     .translate([mapWidth / 2, mapHeight / 2]);
 
   const path = d3.geoPath().projection(projection);
