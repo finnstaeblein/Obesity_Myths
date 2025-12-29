@@ -2305,11 +2305,14 @@ section#glp1-section .content-side {
   }
 
   /* Observable iframes - make them properly sized */
-  .piper-guided-graph iframe,
+  .piper-guided-graph iframe {
+    width: 100% !important;
+    min-height: 800px !important;
+  }
+
   .piper-block iframe {
     width: 100% !important;
     min-height: 500px !important;
-    max-height: 700px !important;
   }
 
   /* Specific fix for GLP-1 chart container */

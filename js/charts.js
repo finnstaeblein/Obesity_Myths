@@ -299,9 +299,11 @@ export function createDataCollectionMap(containerId) {
     .attr('viewBox', `0 0 ${width} ${totalHeight}`)
     .attr('preserveAspectRatio', 'xMidYMid meet');
 
+  // Adjust scale for mobile - use a larger divisor on desktop for better fit
+  const scaleDivisor = isMobile ? 2.8 : 5.5;
   const projection = d3.geoNaturalEarth1()
-    .scale(mapWidth / 5.5)
-    .translate([mapWidth / 2, mapHeight / 2.1]);
+    .scale(mapWidth / scaleDivisor)
+    .translate([mapWidth / 2, mapHeight / 2]);
 
   const path = d3.geoPath().projection(projection);
 
@@ -847,7 +849,7 @@ export function createUnifiedInteractiveChart(containerId) {
   const margin = isMobile
     ? { top: 40, right: 20, bottom: 60, left: 50 }
     : { top: 60, right: 180, bottom: 60, left: 60 };
-  const width = Math.max(containerWidth - margin.left - margin.right, isMobile ? 600 : 400);
+  const width = containerWidth - margin.left - margin.right;
   const height = (isMobile ? 400 : 500) - margin.top - margin.bottom;
 
   const svg = d3.select(`#${containerId}`)
