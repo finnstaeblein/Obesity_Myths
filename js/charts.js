@@ -283,18 +283,25 @@ export function createDataCollectionMap(containerId) {
   container.innerHTML = '';
 
   const width = container.clientWidth || 800;
-  const height = 500;
-  const legendWidth = 230;
-  const mapWidth = width - legendWidth - 40;
+  const isMobile = width < 768;
+
+  // On mobile: stack legend below map, on desktop: legend on right
+  const legendWidth = isMobile ? 0 : 230;
+  const mapWidth = isMobile ? width : width - legendWidth - 40;
+  const mapHeight = isMobile ? 400 : 500;
+  const legendYOffset = isMobile ? mapHeight + 20 : 20;
+  const totalHeight = isMobile ? mapHeight + 400 : 500; // Extra space for stacked legend
 
   const svg = d3.select(`#${containerId}`)
     .append('svg')
     .attr('width', width)
-    .attr('height', height);
+    .attr('height', totalHeight)
+    .attr('viewBox', `0 0 ${width} ${totalHeight}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet');
 
   const projection = d3.geoNaturalEarth1()
     .scale(mapWidth / 5.5)
-    .translate([mapWidth / 2, height / 1.9]);
+    .translate([mapWidth / 2, mapHeight / 2]);
 
   const path = d3.geoPath().projection(projection);
 
@@ -425,8 +432,9 @@ export function createDataCollectionMap(containerId) {
     });
 
     // Economy Legend
+    const legendXPosition = isMobile ? 20 : mapWidth + 20;
     const economyLegend = svg.append('g')
-      .attr('transform', `translate(${mapWidth + 20}, 20)`);
+      .attr('transform', `translate(${legendXPosition}, ${legendYOffset})`);
 
     economyLegend.append('text')
       .attr('x', 0)
@@ -461,8 +469,11 @@ export function createDataCollectionMap(containerId) {
     });
 
     // Size Legend
+    const sizeLegendYOffset = isMobile
+      ? legendYOffset + economyOrder.length * 24 + 40
+      : 20 + economyOrder.length * 24 + 40;
     const sizeLegend = svg.append('g')
-      .attr('transform', `translate(${mapWidth + 20}, ${20 + economyOrder.length * 24 + 40})`);
+      .attr('transform', `translate(${legendXPosition}, ${sizeLegendYOffset})`);
 
     sizeLegend.append('text')
       .attr('x', 0)
@@ -829,14 +840,22 @@ export function createUnifiedInteractiveChart(containerId) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
 
-  const margin = { top: 60, right: 180, bottom: 60, left: 60 };
-  const width = (container.clientWidth || 600) - margin.left - margin.right;
-  const height = 500 - margin.top - margin.bottom;
+  const containerWidth = container.clientWidth || 600;
+  const isMobile = containerWidth < 768;
+
+  // Adjust margins and dimensions for mobile
+  const margin = isMobile
+    ? { top: 40, right: 20, bottom: 60, left: 50 }
+    : { top: 60, right: 180, bottom: 60, left: 60 };
+  const width = Math.max(containerWidth - margin.left - margin.right, isMobile ? 600 : 400);
+  const height = (isMobile ? 400 : 500) - margin.top - margin.bottom;
 
   const svg = d3.select(`#${containerId}`)
     .append('svg')
-    .attr('width', width + margin.left + margin.right)
+    .attr('width', '100%')
     .attr('height', height + margin.top + margin.bottom)
+    .attr('viewBox', `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet')
     .append('g')
     .attr('transform', `translate(${margin.left},${margin.top})`);
 
@@ -1385,9 +1404,10 @@ export function createUnifiedInteractiveChart(containerId) {
     addTooltipIcon(yAxisLabelGroup, yAxisTextWidth / 2 + 8, -5, varMapping[currentFilters.yVar].tooltip);
   }
 
-  // Legend
+  // Legend - hide on mobile since there's no space
   const legend = svg.append('g')
-    .attr('transform', `translate(${width + 20}, -40)`);
+    .attr('transform', `translate(${width + 20}, -40)`)
+    .style('display', isMobile ? 'none' : 'block');
 
   legend.append('text')
     .attr('x', 0)
@@ -1427,9 +1447,10 @@ export function createUnifiedInteractiveChart(containerId) {
       .text(item.label);
   });
 
-  // Sex legend
+  // Sex legend - hide on mobile since there's no space
   const sexLegendGroup = svg.append('g')
-    .attr('transform', `translate(${width + 20}, ${180})`);
+    .attr('transform', `translate(${width + 20}, ${180})`)
+    .style('display', isMobile ? 'none' : 'block');
 
   sexLegendGroup.append('text')
     .attr('x', 0)
