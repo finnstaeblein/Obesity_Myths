@@ -428,6 +428,25 @@ export function createDataCollectionMap(containerId) {
           .attr('opacity', 0.85);
 
           dataValueTooltip.style('visibility', 'hidden');
+      })
+      .on('click', function(event) {
+        // On mobile, clicking the same point twice hides the tooltip
+        if (isMobile && 'ontouchstart' in window) {
+          const currentPop = pop.Population;
+          if (window.lastClickedPopulation === currentPop) {
+            // Second click on same point - hide tooltip
+            dataValueTooltip.style('visibility', 'hidden');
+            d3.select(this)
+              .transition()
+              .duration(120)
+              .attr('r', radiusScale(totalN))
+              .attr('opacity', 0.85);
+            window.lastClickedPopulation = null;
+          } else {
+            // First click or different point - remember it
+            window.lastClickedPopulation = currentPop;
+          }
+        }
       });
     });
 
