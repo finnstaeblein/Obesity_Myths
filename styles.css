@@ -2152,10 +2152,44 @@ section#glp1-section .content-side {
   #glp1-decline-chart {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    padding: 0;
+    margin: 1rem 0;
   }
 
   #glp1-decline-chart svg {
     min-width: 100%;
+  }
+
+  /* Reduce spacing around GLP-1 chart container */
+  #glp1-decline-chart + div {
+    margin-top: 1rem;
+  }
+
+  /* Leptin pathway image mobile optimization */
+  img[src*="leptin_pathway"] {
+    max-width: 100% !important;
+    height: auto !important;
+    margin: 1rem auto !important;
+  }
+
+  /* Reduce padding around GLP-1 section on mobile */
+  #glp1-section {
+    padding: 2rem 0 !important;
+  }
+
+  /* Reduce spacing in GLP-1 chart container */
+  #glp1-section .conclusion-content {
+    padding: 0 !important;
+  }
+
+  #glp1-section h2 {
+    margin-bottom: 1rem !important;
+    padding: 0 1rem !important;
+  }
+
+  /* Reduce chart container margins */
+  #glp1-decline-chart {
+    margin: 0.5rem 0 !important;
   }
 
   /* Control rows stack on mobile */
@@ -2193,12 +2227,21 @@ section#glp1-section .content-side {
   /* D3 Interactive Chart specific optimizations */
   #inactivity-chart {
     width: 100%;
-    overflow: visible;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Ensure chart has sufficient height on mobile */
   #inactivity-chart svg {
     min-height: 400px;
+    min-width: 600px; /* Force minimum width to make chart scrollable */
+  }
+
+  /* Make chart wrapper scrollable */
+  #inactivity-chart .chart-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Make regression stats more readable */
@@ -2244,6 +2287,19 @@ section#glp1-section .content-side {
   #data-collection-map {
     width: 100%;
     min-height: 400px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #data-collection-map svg {
+    min-width: 600px; /* Force minimum width to make map scrollable */
+  }
+
+  /* Make all chart containers scrollable horizontally on mobile */
+  .chart-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.75rem;
   }
 
   .toggle-label {
