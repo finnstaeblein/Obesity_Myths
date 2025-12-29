@@ -282,15 +282,17 @@ export function createDataCollectionMap(containerId) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
 
-  const width = container.clientWidth || 800;
-  const isMobile = width < 768;
+  const containerWidth = container.clientWidth || 800;
+  const isMobile = containerWidth < 768;
 
-  // On mobile: stack legend below map, on desktop: legend on right
+  // On mobile: use fixed dimensions for consistent rendering
+  // On desktop: dynamic based on container
+  const width = isMobile ? 400 : containerWidth;
   const legendWidth = isMobile ? 0 : 230;
-  const mapWidth = isMobile ? width : width - legendWidth - 40;
+  const mapWidth = isMobile ? 400 : containerWidth - legendWidth - 40;
   const mapHeight = isMobile ? 350 : 500;
   const legendYOffset = isMobile ? mapHeight + 30 : 20;
-  const totalHeight = isMobile ? mapHeight + 320 : 500; // Extra space for stacked legend
+  const totalHeight = isMobile ? mapHeight + 320 : 500;
 
   const svg = d3.select(`#${containerId}`)
     .append('svg')
@@ -299,8 +301,8 @@ export function createDataCollectionMap(containerId) {
     .attr('viewBox', `0 0 ${width} ${totalHeight}`)
     .attr('preserveAspectRatio', 'xMidYMid meet');
 
-  // Adjust scale for mobile - use a larger divisor on desktop for better fit
-  const scaleDivisor = isMobile ? 2.8 : 5.5;
+  // Scale the map appropriately
+  const scaleDivisor = isMobile ? 2.5 : 5.5;
   const projection = d3.geoNaturalEarth1()
     .scale(mapWidth / scaleDivisor)
     .translate([mapWidth / 2, mapHeight / 2]);
