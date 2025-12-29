@@ -52,6 +52,7 @@ const state = {
   'combined-question': { step: 0, totalSteps: 2 },
   bridge: { step: 0, totalSteps: 1 },
   inactivity: { step: 0, totalSteps: 5 },
+  'inactivity-takeaway': { step: 0, totalSteps: 1 },
   'willpower-bridge': { step: 0, totalSteps: 1 },
   'willpower-genetic': { step: 0, totalSteps: 1 },
   'willpower-food': { step: 0, totalSteps: 1 },
@@ -65,7 +66,7 @@ const chartPresets = {
   3: { xVar: 'PercUPF', yVar: 'Fat', chartType: 'auto' }            // Exploration (user controlled)
 };
 
-const sectionOrder = ['global-patterns-section', 'combined-question-section', 'bridge-section', 'inactivity-section', 'willpower-bridge-section', 'willpower-genetic-section', 'willpower-food-section', 'glp1-section', 'glp1-medications-section', 'conclusion-section'];
+const sectionOrder = ['global-patterns-section', 'combined-question-section', 'bridge-section', 'inactivity-section', 'inactivity-takeaway-section', 'willpower-bridge-section', 'willpower-genetic-section', 'willpower-food-section', 'glp1-section', 'glp1-medications-section', 'conclusion-section'];
 
 function updateSection(sectionId) {
   const section = document.getElementById(sectionId);

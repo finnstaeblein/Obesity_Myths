@@ -288,20 +288,20 @@ export function createDataCollectionMap(containerId) {
   // On mobile: stack legend below map, on desktop: legend on right
   const legendWidth = isMobile ? 0 : 230;
   const mapWidth = isMobile ? width : width - legendWidth - 40;
-  const mapHeight = isMobile ? 400 : 500;
-  const legendYOffset = isMobile ? mapHeight + 20 : 20;
-  const totalHeight = isMobile ? mapHeight + 400 : 500; // Extra space for stacked legend
+  const mapHeight = isMobile ? 350 : 500;
+  const legendYOffset = isMobile ? mapHeight + 30 : 20;
+  const totalHeight = isMobile ? mapHeight + 320 : 500; // Extra space for stacked legend
 
   const svg = d3.select(`#${containerId}`)
     .append('svg')
-    .attr('width', width)
+    .attr('width', '100%')
     .attr('height', totalHeight)
     .attr('viewBox', `0 0 ${width} ${totalHeight}`)
     .attr('preserveAspectRatio', 'xMidYMid meet');
 
   const projection = d3.geoNaturalEarth1()
     .scale(mapWidth / 5.5)
-    .translate([mapWidth / 2, mapHeight / 2]);
+    .translate([mapWidth / 2, mapHeight / 2.1]);
 
   const path = d3.geoPath().projection(projection);
 
