@@ -1663,15 +1663,25 @@ export function createObesityDeclineChart(containerId) {
   const container = d3.select(`#${containerId}`);
   container.selectAll('*').remove();
 
-  const margin = { top: 60, right: 120, bottom: 60, left: 60 };
-  const width = 900 - margin.left - margin.right;
-  const height = 500 - margin.top - margin.bottom;
+  const margin = { top: 20, right: 120, bottom: 60, left: 60 };
+  const width = 1000 - margin.left - margin.right;
+  const height = 550 - margin.top - margin.bottom;
 
   const svg = container.append('svg')
-    .attr('width', width + margin.left + margin.right)
+    .attr('width', '100%')
     .attr('height', height + margin.top + margin.bottom)
+    .attr('viewBox', `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet')
     .append('g')
     .attr('transform', `translate(${margin.left},${margin.top})`);
+
+  // Add white background
+  svg.append('rect')
+    .attr('x', -margin.left)
+    .attr('y', -margin.top)
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom)
+    .attr('fill', 'white');
 
   // Scales
   const xScale = d3.scaleLinear()

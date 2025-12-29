@@ -53,9 +53,9 @@ const state = {
   bridge: { step: 0, totalSteps: 1 },
   inactivity: { step: 0, totalSteps: 5 },
   'willpower-bridge': { step: 0, totalSteps: 1 },
-  'willpower-genetic': { step: 0, totalSteps: 4 },
+  'willpower-genetic': { step: 0, totalSteps: 1 },
   'willpower-food': { step: 0, totalSteps: 1 },
-  glp1: { step: 0, totalSteps: 2 }
+  glp1: { step: 0, totalSteps: 1 }
 };
 
 // Preset configurations for each step of the unified chart
@@ -176,9 +176,9 @@ function updateChart(sectionKey, step) {
       }
       break;
     case 'glp1':
-      // Show obesity decline chart only on step 0
+      // Show obesity decline chart
       const glp1ChartContainer = document.getElementById('glp1-decline-chart');
-      if (step === 0 && glp1ChartContainer) {
+      if (glp1ChartContainer) {
         createObesityDeclineChart('glp1-decline-chart');
       }
       break;
