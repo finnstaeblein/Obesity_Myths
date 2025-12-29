@@ -2328,7 +2328,7 @@ section#glp1-section .content-side {
     padding: 0.75rem;
   }
 
-  /* Make Observable iframes scrollable on mobile - no scaling */
+  /* Make Observable iframes scrollable on mobile - force wide width */
   .piper-guided-graph {
     width: 100%;
     overflow-x: auto;
@@ -2337,8 +2337,8 @@ section#glp1-section .content-side {
   }
 
   .piper-guided-graph iframe {
-    width: 100% !important;
-    min-width: 100% !important;
+    width: 800px !important;
+    min-width: 800px !important;
     height: 800px !important;
   }
 
