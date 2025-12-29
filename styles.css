@@ -2334,14 +2334,18 @@ section#glp1-section .content-side {
     height: 540px;
     overflow: hidden;
     position: relative;
+    display: flex;
+    justify-content: center;
   }
 
   .piper-guided-graph iframe {
     width: 800px !important;
     height: 1077px !important;
     transform: scale(0.5);
-    transform-origin: top left;
+    transform-origin: center top;
     pointer-events: auto;
+    margin-left: -200px;
+    margin-right: -200px;
   }
 
   .piper-block iframe {
