@@ -1308,15 +1308,15 @@ section#glp1-section .content-side {
 }
 
 .conclusion-list {
-  list-style: none;
-  padding: 0;
+  list-style: disc;
+  padding-left: 2rem;
+  margin-left: 0;
 }
 
 .conclusion-list li {
-  display: flex;
-  align-items: flex-start;
   margin-bottom: 1.5rem;
   font-size: 1.25rem;
+  line-height: 1.6;
 }
 
 .conclusion-list .bullet {
